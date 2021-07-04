@@ -6,11 +6,6 @@
     public class RegisterRequest
     {
         /// <summary>
-        /// LinkedIn profile nickname ('www.linkedin.com/in/mickael.boss/?locale=en_US' => mickael.boss)
-        /// </summary>
-        public string? LinkedIn { get; set; }
-
-        /// <summary>
         /// First name
         /// </summary>
         public string? FirstName { get; set; }

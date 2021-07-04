@@ -80,12 +80,11 @@ namespace Api
                 {
                     Title = "API",
                     Version = "v1",
-                    Description = "LinkedIn API",
+                    Description = "Deploy API",
                     Contact = new OpenApiContact
                     {
                         Name = "Wassim AZIRAR",
-                        Email = "wassim.azirar@gmail.com",
-                        Url = new Uri("https://www.linkedin.com/in/wassimazirar/")
+                        Email = "wassim.azirar@gmail.com"
                     }
                 });
 

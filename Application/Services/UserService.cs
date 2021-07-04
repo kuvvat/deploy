@@ -50,14 +50,6 @@ namespace Application.Services
             return VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt) ? user : null;
         }
 
-        public async Task DecrementCreditAsync(int id)
-        {
-            var dbUser = await _userRepository.GetByIdAsync(id);
-            dbUser.Credits -= 1;
-
-            await _userRepository.UpdateAsync(dbUser);
-        }
-
         public async Task<User> GetByIdAsync(int userId)
         {
             var result = await _userRepository.GetByIdAsync(userId);

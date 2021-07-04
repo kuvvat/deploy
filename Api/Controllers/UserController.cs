@@ -65,11 +65,6 @@ namespace Api.Controllers
                 return BadRequest(new { message = "The input object cannot be null or empty" });
             }
 
-            if (string.IsNullOrWhiteSpace(registerRequest.LinkedIn))
-            {
-                return BadRequest(new { message = "LinkedIn cannot be null or empty" });
-            }
-
             if (string.IsNullOrWhiteSpace(registerRequest.FirstName) || string.IsNullOrWhiteSpace(registerRequest.LastName))
             {
                 return BadRequest(new { message = "First name and last name are mandatory" });
@@ -104,13 +99,11 @@ namespace Api.Controllers
             var user = new User
             {
                 Guid = Guid.NewGuid(),
-                LinkedIn = registerRequest.LinkedIn,
                 FirstName = registerRequest.FirstName,
                 LastName = registerRequest.LastName,
                 Email = registerRequest.Email,
                 PhoneNumber = registerRequest.PhoneNumber,
                 Password = registerRequest.Password,
-                Credits = 15,
                 RegistrationDate = DateTime.Now
             };
 
@@ -177,7 +170,6 @@ namespace Api.Controllers
                 LastName = user.LastName,
                 Email = user.Email,
                 PhoneNumber = user.PhoneNumber,
-                Credits = user.Credits,
                 Token = token,
                 TokenExpiration = DateTime.Now.AddMonths(6)
             };

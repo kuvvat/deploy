@@ -9,8 +9,6 @@ namespace Application.Interfaces
 
         Task<User> AuthenticateAsync(string username, string password);
 
-        Task DecrementCreditAsync(int id);
-
         Task<User> GetByIdAsync(int userId);
 
         Task<bool> IsExistAsync(string phoneNumber, string email);

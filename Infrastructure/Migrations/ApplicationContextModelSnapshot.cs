@@ -26,9 +26,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<int>("Credits")
-                        .HasColumnType("integer");
-
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
@@ -39,9 +36,6 @@ namespace Infrastructure.Migrations
                         .HasColumnType("uuid");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("text");
-
-                    b.Property<string>("LinkedIn")
                         .HasColumnType("text");
 
                     b.Property<byte[]>("PasswordHash")

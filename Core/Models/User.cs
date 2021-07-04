@@ -13,8 +13,6 @@ namespace Core.Models
 
         public Guid? Guid { get; set; }
 
-        public string LinkedIn { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -22,8 +20,6 @@ namespace Core.Models
         public string Email { get; set; }
 
         public string PhoneNumber { get; set; }
-
-        public int Credits { get; set; }
 
         [NotMapped]
         public string Password { get; set; }
