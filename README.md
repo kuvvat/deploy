@@ -22,7 +22,7 @@
 
 `sudo apt install python3.7`
 
-## Install Pip
+## Install PiP
 
 `sudo apt update`
 
@@ -38,6 +38,19 @@
 
 `cd deploy`
 
-`donet restore`
+`dotnet restore`
 
-`dotnet build`
+`dotnet build --configuration Release`
+
+`cd .\Api\bin\Release\netcoreapp3.1\`
+
+`dotnet .\Api.dll`
+
+The application will be available at http://localhost:5001
+
+If you get this error `password authentication failed for user "postgres"`
+
+    1) Update ConnectionString in Api\appsettings.Production.json
+    2) run again dotnet build --configuration Release
+    3) go to .\Api\bin\Release\netcoreapp3.1\
+    4) dotnet .\Api.dll
