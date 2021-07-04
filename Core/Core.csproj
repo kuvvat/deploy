@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Keras.NET" Version="3.7.4.4" />
+    <PackageReference Include="Keras.NET.Mono" Version="3.7.4.4" />
+    <PackageReference Include="Sovren.SDK" Version="1.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4" />
+  </ItemGroup>
+</Project>
