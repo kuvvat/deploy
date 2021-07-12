@@ -10,7 +10,7 @@ jobs:
     name: Deploy on AWS ec2 instance
     steps:
       - name: Action steps
-        uses: actions/checkout@v2
+        uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.HOST}}
           username: ${{secrets.USERNAME}}
