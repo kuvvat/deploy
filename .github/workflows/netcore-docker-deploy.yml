@@ -9,16 +9,16 @@ jobs:
     runs-on: ubuntu-latest
     name: Deploy on AWS ec2 instance
     steps:
-      -name: Action steps
-      uses: actions/checkout@v2
-      with:
-        host: ${{secrets.HOST}}
-        username: ${{secrets.USERNAME}}
-        key: ${{secrets.PRIVATE_KEY}}
-        script: |
-          run docker stop sdk
-          run docker rm sdk
-          run cd /home/ubuntu/netcore
-          run docker-compose build coreapi
-          run docker-compose up -d coreapi
+      - name: Action steps
+      - uses: actions/checkout@v2
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USERNAME}}
+          key: ${{secrets.PRIVATE_KEY}}
+          script: |
+            docker stop sdk
+            docker rm sdk
+            cd /home/ubuntu/netcore
+            docker-compose build coreapi
+            docker-compose up -d coreapi
     
