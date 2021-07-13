@@ -19,12 +19,10 @@ jobs:
             sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
             sudo chmod +x /usr/local/bin/docker-compose
             git clone https://github.com/kuvvat/deploy.git
-            sudo apt install certbot -y
-            sudo certbot certonly --standalone --non-interactive --agree-tos --register-unsafely-without-email --preferred-challenges http --http-01-port 80 -d nador.app -d www.nador.app
             cd deploy           
             mkdir -p ./Deployment/nginx/ssl
-            sudo cp /etc/letsencrypt/live/nador.app/fullchain.pem ./Deployment/nginx/ssl/
-            sudo cp /etc/letsencrypt/live/nador.app/privkey.pem ./Deployment/nginx/ssl/
+            sudo apt install certbot -y
+            sudo certbot certonly --standalone --non-interactive --agree-tos --register-unsafely-without-email --preferred-challenges http --http-01-port 80 --cert-path ./Deployment/nginx/ssl/ --key-path ./Deployment/nginx/ssl/ --fullchain-path ./Deployment/nginx/ssl/ --chain-path ./Deployment/nginx/ssl/ -d nador.app -d www.nador.app
             docker-compose up -d database
             docker-compose up -d coreapi
             docker-compose up -d web
