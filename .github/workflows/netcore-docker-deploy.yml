@@ -21,4 +21,3 @@ jobs:
             cd /home/ubuntu/netcore
             docker-compose build coreapi
             docker-compose up -d coreapi
-    
