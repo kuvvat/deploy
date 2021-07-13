@@ -18,6 +18,6 @@ jobs:
           script: |
             docker stop sdk
             docker rm sdk
-            cd /home/ubuntu/netcore
+            cd ./deploy/Deployment
             docker-compose build coreapi
             docker-compose up -d coreapi
