@@ -1,0 +1,36 @@
+name: Manual workflow
+
+on: workflow_dispatch
+  
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    name: Initial setup
+    steps:
+      - name: Action steps
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.HOST}}
+          username: ${{secrets.USERNAME}}
+          key: ${{secrets.PRIVATE_KEY}}
+          script: |
+            curl -fsSL https://get.docker.com -o get-docker.sh
+            sudo sh get-docker.sh
+            sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            sudo chmod +x /usr/local/bin/docker-compose
+            git clone https://github.com/kuvvat/deploy.git
+            sudo certbot certonly --standalone --non-interactive --agree-tos --register-unsafely-without-email --preferred-challenges http --http-01-port 80 -d nador.app -d www.nador.app
+            mkdir Deployment
+            cd Deployment
+            git init
+            git remote add origin -f https://github.com/kuvvat/deploy.git
+            echo "Deployment/" > .git/info/sparse-checkout
+            git pull origin master
+            mkdir -p ./nginx/ssl
+            cp /etc/letsencrypt/live/nador.app/fullchain.pem ./nginx/ssl/
+            cp /etc/letsencrypt/live/nador.app/privkey.pem ./nginx/ssl/
+            docker-compose up -d database
+            docker-compose up -d coreapi
+            docker-compose up -d web
+            cp -r renewal-hooks /etc/letsencrypt/
+            
