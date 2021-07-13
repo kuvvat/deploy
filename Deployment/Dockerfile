@@ -24,11 +24,7 @@ RUN git clone https://github.com/wassim-azirar/deploy.git /deploy
 
 WORKDIR /deploy
 
-<<<<<<< HEAD
-RUN sed -i '5,43d' requirements.txt
-=======
 RUN sed -i '10,43d' requirements.txt
->>>>>>> 2d36195f49963c7fc549f6b3e7ad1c1c1fcf5d75
 
 RUN pip3 install -r requirements.txt
 
@@ -39,10 +35,3 @@ RUN dotnet restore
 RUN dotnet build --configuration Release
 
 WORKDIR ./Api/bin/Release/netcoreapp3.1
-<<<<<<< HEAD
-=======
-
-#EXPOSE 5000
-#EXPOSE 5001
-
->>>>>>> 2d36195f49963c7fc549f6b3e7ad1c1c1fcf5d75
