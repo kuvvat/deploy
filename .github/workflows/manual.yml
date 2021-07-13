@@ -27,5 +27,5 @@ jobs:
             sudo docker-compose up -d database
             sudo docker-compose up -d coreapi
             sudo docker-compose up -d web
-            sudo cp -r ./Deployment/renewal-hooks /etc/letsencrypt/
+            sudo cp -r ./renewal-hooks /etc/letsencrypt/
             
