@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  
+  web:
+    container_name: web
+    image: nginx
+    depends_on:
+      - database
+      - coreapi
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/app.conf:/etc/nginx/conf.d/default.conf
+      - ./nginx/ssl:/etc/nginx/ssl  
+    networks:
+      default:
+        ipv4_address: 172.15.0.4
+
+  coreapi:
+    container_name: sdk
+    build: .
+    restart: on-failure
+    depends_on:
+      - database
+    command: bash -c 'while !</dev/tcp/database/5432; do sleep 1; done; dotnet /deploy/Api/bin/Release/netcoreapp3.1/Api.dll --urls https://0.0.0.0:5001'  
+    networks:
+      default:
+        ipv4_address: 172.15.0.2
+
+  database:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    networks:
+      default:
+        ipv4_address: 172.15.0.3
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 172.15.0.0/16
